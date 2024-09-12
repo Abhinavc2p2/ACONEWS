@@ -1,0 +1,214 @@
+<header>
+  <div class="logo text-center">
+    <a href="/" style="text-decoration: none;"><h2 style="font-size: 40px;padding: 10px; color:rgb(69, 53, 53)"><b>ACONEWS</b></h2></a>
+  </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/news/breaking-news">Breaking News</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/news/sports">Sports</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/news/entertainment">Entertainment</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/news/technology">Technology</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/news/science">Science</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/news/health">Health</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/news/nation">Nation</a>
+            
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/news/world">World</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/news/business">Business</a>
+          </li>
+
+        <li class="nav-item">
+          <div class="user-icon">
+          <a class="nav-link" href="/user"> <i class="fas fa-user" style="color: #fff;"></i></a>
+        </div>
+        </li>
+        </ul>
+       
+        <form class="form-inline my-2 my-lg-0" method="POST" action="/news/search">
+          <input class="form-control mr-sm-2" name="search" type="search" placeholder="Search" aria-label="Search" style="width: 120px;">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+    </header>
+
+    <!-- <div class="news">
+        <% if(news != null){ %>
+
+           <% news.articles.forEach(function(articles,index){ %>
+            <a href="<%- articles.url %>" style="text-decoration: none;"> 
+            <div class="news_card">
+                   <img src="<%- articles.image %>">
+              <h2><%- articles.title %></h2>
+              <p><%- articles.description %></p>
+            </div>
+          </a>
+               <% }) %>
+  <% } else { %>
+   No posts found
+   <% } %>
+    </div>
+</div> -->
+
+
+
+<div class="wrapper flex flex-wrap justify-center gap-">
+  <div class="news">
+    <%- console.log(news) %> <!-- This will output the news data to the console -->
+
+    <% if (news != null && news.articles.length > 0) { %>
+      <% news.articles.forEach(function (article, index) { %>
+        <a href="<%- article.url %>" style="text-decoration: none;">
+          <div class="news_card transition-transform duration-300 hover:transform hover:scale-105 hover:shadow-2xl">
+            <!-- News Image -->
+            <img
+              src="<%- article.image %>"
+              alt="news image"
+              class="h-[150px] w-full rounded-t-md object-cover"
+            />
+            <div class="p-4">
+              <!-- News Title -->
+              <h2 class="inline-flex items-center text-lg font-semibold text-gray-800">
+                <%- article.title %>  
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="h-4 w-4 ml-2"
+                >
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </h2>
+              <!-- News Description -->
+              <p class="mt-3 text-sm text-gray-600">
+                <%- article.description %>
+              </p>
+              <!-- Tags (customize if necessary) -->
+              <div class="mt-4">
+                <span class="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
+                  #News
+                </span>
+                <span class="mb-2 mr-2 inline-block rounded-full bg-gray-100 px-3 py-1 text-[10px] font-semibold text-gray-900">
+                  #Breaking
+                </span>
+              </div>
+              <!-- Read More Button -->
+              <button
+                type="button"
+                class="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+              >
+                Read
+              </button>
+            </div>
+          </div>
+        </a>
+      <% }) %>
+    <% } else { %>
+      <p>No posts found</p>
+    <% } %>
+  </div>
+</div>
+
+
+
+<style>
+/* Styling for the 3D effect */
+.news_card {
+/* Fixed height for uniform card size */
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  perspective: 1000px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+
+}
+
+.news_card:hover {
+  transform: rotateY(3deg) scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.news_card img {
+  width: 100%;
+  height: 200px; /* Ensure images are the same height */
+  border-radius: 8px 8px 0 0;
+}
+
+.news_card h2 {
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.news_card p {
+  font-size: 14px;
+  color: #666;
+  overflow: hidden; /* Hide overflow if the description is too long */
+  text-overflow: ellipsis;
+  height: 60px; /* Ensure all descriptions are contained within this height */
+}
+
+.news_card button {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.news_card button:hover {
+  background-color: #555;
+}
+
+/* Wrapper styling for centering */
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; /* Reduce gap between cards */padding: 20px;
+}
+
+
+</style>
+
+
